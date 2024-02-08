@@ -19,39 +19,42 @@ public class Bombarder : EnemyManager
 
     private void Update()
     {
-        if (isFleeing)
+        if (!GameManager.instance.isGamePaused)
         {
-            Flee(PlayerMovement.transform.position);
-            ForceRotate();
-        }
-        else
-        {
-            Dash();
-        }
-
-        Movement();
-        Rotation();
-        EnsureMaxHealth();
-
-        float distanceToPlayer = Vector2.Distance(transform.position, PlayerMovement.transform.position);
-
-        if (isFleeing)
-        {
-            if (distanceToPlayer >= distanceWithPlayerMax)
+            if (isFleeing)
             {
-                isFleeing = false;
+                Flee(PlayerMovement.transform.position);
+                ForceRotate();
             }
-        }
-        else
-        {
-            if (distanceToPlayer <= distanceWithPlayerMin)
+            else
             {
-                isFleeing = true;
+                Dash();
+            }
 
-                if (Time.time > lastFireTime + fireRate)
+            Movement();
+            Rotation();
+            EnsureMaxHealth();
+
+            float distanceToPlayer = Vector2.Distance(transform.position, PlayerMovement.transform.position);
+
+            if (isFleeing)
+            {
+                if (distanceToPlayer >= distanceWithPlayerMax)
                 {
-                    lastFireTime = Time.time;
-                    SpawnBullet();
+                    isFleeing = false;
+                }
+            }
+            else
+            {
+                if (distanceToPlayer <= distanceWithPlayerMin)
+                {
+                    isFleeing = true;
+
+                    if (Time.time > lastFireTime + fireRate)
+                    {
+                        lastFireTime = Time.time;
+                        SpawnBullet();
+                    }
                 }
             }
         }

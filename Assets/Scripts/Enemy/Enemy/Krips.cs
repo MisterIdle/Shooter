@@ -4,15 +4,18 @@ public class Krips : EnemyManager
 {
     private void Update()
     {
-        Movement();
-        Rotation();
-        KeepDistanceWithEnemy();
-        EnsureMaxHealth();
-
-        if (canShoot)
+        if (!GameManager.instance.isGamePaused)
         {
-            KeepDistanceWithPlayer();
-            SpawnKrips();
+            Movement();
+            Rotation();
+            KeepDistanceWithEnemy();
+            EnsureMaxHealth();
+
+            if (canShoot)
+            {
+                KeepDistanceWithPlayer();
+                SpawnKrips();
+            }
         }
     }
 

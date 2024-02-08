@@ -27,23 +27,27 @@ public class Support : EnemyManager
 
     public void Update()
     {
-        Movement();
-        RotateInOtherEnemy();
-
-        if (isHealing && Time.time - lastHealTime >= healInterval)
+        if (!GameManager.instance.isGamePaused)
         {
-            HealOtherEnemy();
-            lastHealTime = Time.time;
-        }
 
-        if (isProtecting)
-        {
-            ProtectOtherEnemy();
-        }
+            Movement();
+            RotateInOtherEnemy();
 
-        if (isBoost)
-        {
-            BoostOtherEnemy();
+            if (isHealing && Time.time - lastHealTime >= healInterval)
+            {
+                HealOtherEnemy();
+                lastHealTime = Time.time;
+            }
+
+            if (isProtecting)
+            {
+                ProtectOtherEnemy();
+            }
+
+            if (isBoost)
+            {
+                BoostOtherEnemy();
+            }
         }
     }
 

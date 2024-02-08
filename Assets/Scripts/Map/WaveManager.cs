@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class EnemyType
@@ -24,9 +25,11 @@ public struct WaveData
     }
 }
 
-public class GameManager : MonoBehaviour
+public class WaveManager : MonoBehaviour
 {
     public PolygonCollider2D zone;
+    public HUDManager hudManager;
+    public PlayerMovement playerMovement;
     public List<EnemyType> enemyTypes;
 
     public int waveNumber;
@@ -36,13 +39,15 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        playerMovement = FindObjectOfType<PlayerMovement>();
+        hudManager = FindObjectOfType<HUDManager>();
         zone = GetComponent<PolygonCollider2D>();
+        StartNextWave();
     }
+
 
     public void Update()
     {
-        StartWave();
-
         if (isWaveActive && waveNumber < wavesData.Count && wavesData[waveNumber].enemyTypes.Count > 0)
         {
             foreach (EnemyType enemyType in wavesData[waveNumber].enemyTypes)
@@ -66,20 +71,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            hudManager.menu.SetActive(true);
             isWaveActive = false;
             DestroyAllEnemies();
         }
 
-        ChangeWaveWithArrows(); // Appel de la nouvelle méthode
-    }
-
-    public void StartWave()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && !isWaveActive)
-        {
-            isWaveActive = true;
-            waveStartTime = Time.time;
-        }
+        ChangeWaveWithArrows();
     }
 
     public void SpawnEnemy(EnemyType enemyType)
@@ -127,9 +124,32 @@ public class GameManager : MonoBehaviour
     {
         isWaveActive = false;
         DestroyAllEnemies();
+
+        playerMovement.spriteRenderer.enabled = false;
+        GameManager.instance.isGameMenu = true;
     }
 
-    // Nouvelle méthode pour changer de vague avec les flèches haut et bas
+    public void NextWaveButtonClicked()
+    {
+        if (!isWaveActive && waveNumber < wavesData.Count)
+        {
+            StartNextWave();
+        }
+    }
+
+    private void StartNextWave()
+    {
+        isWaveActive = true;
+        waveStartTime = Time.time;
+        waveNumber++;
+
+        hudManager.menu.SetActive(false);
+        playerMovement.spriteRenderer.enabled = true;
+        GameManager.instance.isGameMenu = false;
+    }
+
+    // DEBUG
+
     private void ChangeWaveWithArrows()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && !isWaveActive && waveNumber < wavesData.Count - 1)

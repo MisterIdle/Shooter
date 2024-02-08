@@ -4,17 +4,20 @@ public class LongShooter : EnemyManager
 {
     private void Update()
     {
-        Movement();
-        Rotation();
-        AimAtPlayer();
-        KeepDistanceWithEnemy();
-        KeepDistanceWithPlayer();
-        EnsureMaxHealth();
-
-        if (PlayerMovement == null) return;
-        if (Vector3.Distance(PlayerMovement.transform.position, transform.position) <= minDistanceForShooting)
+        if (!GameManager.instance.isGamePaused)
         {
-            SpawnBullet();
+            Movement();
+            Rotation();
+            AimAtPlayer();
+            KeepDistanceWithEnemy();
+            KeepDistanceWithPlayer();
+            EnsureMaxHealth();
+
+            if (PlayerMovement == null) return;
+            if (Vector3.Distance(PlayerMovement.transform.position, transform.position) <= minDistanceForShooting)
+            {
+                SpawnBullet();
+            }
         }
     }
 

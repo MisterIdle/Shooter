@@ -4,11 +4,14 @@ public class Turrel : EnemyManager
 {
     private void Update()
     {
-        Movement();
-        Rotation();
-        AimAtPlayer();
-        EnsureMaxHealth();
-        SpawnBullet();
+        if (!GameManager.instance.isGamePaused)
+        {
+            Movement();
+            Rotation();
+            AimAtPlayer();
+            EnsureMaxHealth();
+            SpawnBullet();
+        }
     }
 
     public void AimAtPlayer()

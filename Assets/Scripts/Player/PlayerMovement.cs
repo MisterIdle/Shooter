@@ -22,13 +22,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (canControl)
+        if(!GameManager.instance.isGameMenu)
         {
-            Rotation();
-        }
+            if (canControl)
+            {
+                Rotation();
+            }
 
-        Movement();
-        Acceleration();
+            Movement();
+            Acceleration();
+        }
     }
 
     private void Movement()

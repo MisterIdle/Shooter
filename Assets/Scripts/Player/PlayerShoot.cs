@@ -30,26 +30,30 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time > nextFire && playerMovement.canControl)
+        if (!GameManager.instance.isGameMenu)
         {
-            nextFire = Time.time + fireRate;
-            Shoot();
-            elapsedTimeSinceLastShot = 0f;
-        }
 
-        if(Input.GetMouseButton(1))
-        {
-            playerMovement.canControl = false;
-            TurrelRotation();
-
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && Time.time > nextFire && playerMovement.canControl)
             {
-                TurrelShoot();
+                nextFire = Time.time + fireRate;
+                Shoot();
+                elapsedTimeSinceLastShot = 0f;
             }
-        } 
-        else
-        {
-            playerMovement.canControl = true;
+
+            if (Input.GetMouseButton(1))
+            {
+                playerMovement.canControl = false;
+                TurrelRotation();
+
+                if (Input.GetMouseButton(0))
+                {
+                    TurrelShoot();
+                }
+            }
+            else
+            {
+                playerMovement.canControl = true;
+            }
         }
     }
 
