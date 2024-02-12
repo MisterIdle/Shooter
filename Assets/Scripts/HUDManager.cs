@@ -21,12 +21,14 @@ public class HUDManager : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private PlayerHealth playerHealth;
+    private PlayerShoot playerShoot;
     private WaveManager waveManager;
 
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
         playerHealth = FindObjectOfType<PlayerHealth>();
+        playerShoot = FindObjectOfType<PlayerShoot>();
         waveManager = FindAnyObjectByType<WaveManager>();
     }
 
@@ -46,6 +48,22 @@ public class HUDManager : MonoBehaviour
     public void Text()
     {
         wave.text = "Wave: " + waveManager.waveNumber;
+    }
+
+    public void UpgradeHealthButtonClicked()
+    {
+        playerHealth.maxHealth += 1;
+        playerHealth.health = playerHealth.maxHealth;
+    }
+
+    public void UpgradeSpeedButtonClicked()
+    {
+        playerMovement.maxSpeed += 1;
+    }
+
+    public void UpgradeFireRateButtonClicked()
+    {
+        //playerShoot.fireRate -= 0.05f;
     }
 
 }

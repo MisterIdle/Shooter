@@ -142,7 +142,6 @@ public class EnemyManager : MonoBehaviour
         if (health > maxHealth)
         {
             health = maxHealth;
-            Debug.Log("Health capped at max health: " + maxHealth);
         }
     }
 
@@ -153,12 +152,10 @@ public class EnemyManager : MonoBehaviour
         if (!isProtected)
         {
             health -= damage;
-            Debug.Log(health + " Non protect");
         }
         else
         {
             health -= damage - 1;
-            Debug.Log(health + " protect");
         }
 
         if (health <= 0)

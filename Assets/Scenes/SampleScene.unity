@@ -192,17 +192,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 630c2fcddb7b92e4dbd2e2e17d39b3b0, type: 3}
---- !u!114 &319554032 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8031506808060206245, guid: 630c2fcddb7b92e4dbd2e2e17d39b3b0, type: 3}
-  m_PrefabInstance: {fileID: 319554031}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b449f0d15abe6e147b88245e61bc8e5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &506299552
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,24 +885,6 @@ RectTransform:
   m_AnchoredPosition: {x: 115.2742, y: -10.8128}
   m_SizeDelta: {x: 230.5386, y: 21.626}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &171224523018623980
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1167224502420865055}
-  - component: {fileID: 6447484485344424000}
-  - component: {fileID: 6589364036711469798}
-  m_Layer: 5
-  m_Name: Upgrade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!222 &236556127547937773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1055,7 +1026,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144, y: -56}
+  m_AnchoredPosition: {x: -368.5, y: 59.600006}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &900766982465240707
@@ -1175,8 +1146,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 319554032}
-        m_TargetAssemblyTypeName: PlayerUpgrade, Assembly-CSharp
+      - m_Target: {fileID: 8232627972454302471}
+        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
         m_MethodName: UpgradeHealthButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -1243,25 +1214,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!224 &1167224502420865055
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171224523018623980}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1651414932947687097}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 466.5981, y: 239.9739}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1195264683408135685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144, y: -15}
+  m_AnchoredPosition: {x: -368.5, y: 100.600006}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1284995117048451631
@@ -1350,7 +1302,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1167224502420865055}
   - {fileID: 3337695608762480884}
   - {fileID: 7363878314979275838}
   - {fileID: 1278994583510750771}
@@ -1360,8 +1311,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -634.40186, y: -350.0261}
+  m_AnchoredPosition: {x: 0, y: -7.484192}
+  m_SizeDelta: {x: -634.4019, y: -106.8117}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1815285104759753223
 RectTransform:
@@ -1768,8 +1719,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 319554032}
-        m_TargetAssemblyTypeName: PlayerUpgrade, Assembly-CSharp
+      - m_Target: {fileID: 8232627972454302471}
+        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
         m_MethodName: UpgradeFireRateButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -2125,44 +2076,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077159956777047277}
   m_CullTransparentMesh: 1
---- !u!222 &6447484485344424000
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171224523018623980}
-  m_CullTransparentMesh: 1
---- !u!114 &6589364036711469798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171224523018623980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!224 &6601767314459399476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2221,7 +2134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2286,7 +2199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144, y: 26}
+  m_AnchoredPosition: {x: -368.5, y: 141.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7393782009534796660
@@ -2422,8 +2335,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 319554032}
-        m_TargetAssemblyTypeName: PlayerUpgrade, Assembly-CSharp
+      - m_Target: {fileID: 8232627972454302471}
+        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
         m_MethodName: UpgradeSpeedButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -2812,7 +2725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 137, y: -86}
+  m_AnchoredPosition: {x: 363.5, y: -196.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &9200149342026906840
