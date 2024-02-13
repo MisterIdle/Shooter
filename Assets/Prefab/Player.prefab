@@ -30,9 +30,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8559697424575574493}
-  - {fileID: 7827391283787074608}
-  - {fileID: 8184550289132536938}
+  - {fileID: 1366314606755652987}
+  - {fileID: 6690887699086809948}
+  - {fileID: 1009090168530098744}
   m_Father: {fileID: 895817724559139066}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4298506568362586778
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &4435466752662207074
+--- !u!1 &6715518415798352336
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,53 +95,21 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8184550289132536938}
+  - component: {fileID: 6690887699086809948}
   m_Layer: 0
-  m_Name: Turrel
+  m_Name: Cannon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8184550289132536938
+--- !u!4 &6690887699086809948
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4435466752662207074}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1174614668001455186}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5319748903683109552
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8559697424575574493}
-  - component: {fileID: 4403632261254479052}
-  m_Layer: 0
-  m_Name: Left
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8559697424575574493
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319748903683109552}
+  m_GameObject: {fileID: 6715518415798352336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.06, y: 0.04, z: 0}
@@ -150,21 +118,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1174614668001455186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4403632261254479052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319748903683109552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff0db6f978a4d44e9a2762e70f55e4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availableCannons:
-  - {fileID: 11400000, guid: bbbce68b0bf0cbc4092cc7f8c111a92b, type: 2}
-  - {fileID: 0}
 --- !u!1 &7347565236999154512
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +249,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff0db6f978a4d44e9a2762e70f55e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableCannons: []
+  bulletPrefab: {fileID: 6179142048510495778, guid: 5054380f87177c34dbcec07ac055e02c, type: 3}
+  cannonPosition:
+  - {fileID: 1366314606755652987}
+  - {fileID: 6690887699086809948}
+  turrel: {fileID: 7964703539704460226}
+  turrelFireRate: 0.2
+  turrelNumFire: 3
+  nextTurrelFire: 0
+  fireRate: 1
+  nextFire: 0
+  elapsedTimeSinceLastShot: 0
 --- !u!114 &7001720732660924536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
---- !u!1 &8252106920907780797
+--- !u!1 &7964703539704460226
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,21 +282,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7827391283787074608}
+  - component: {fileID: 1009090168530098744}
   m_Layer: 0
-  m_Name: Right
+  m_Name: Turrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7827391283787074608
+--- !u!4 &1009090168530098744
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8252106920907780797}
+  m_GameObject: {fileID: 7964703539704460226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1174614668001455186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8783987305128592362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1366314606755652987}
+  m_Layer: 0
+  m_Name: Cannon1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1366314606755652987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8783987305128592362}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.06, y: 0.04, z: 0}

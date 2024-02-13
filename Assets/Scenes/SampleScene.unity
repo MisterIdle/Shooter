@@ -188,7 +188,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4435466752662207074, guid: 630c2fcddb7b92e4dbd2e2e17d39b3b0, type: 3}
+    - {fileID: 8252106920907780797, guid: 630c2fcddb7b92e4dbd2e2e17d39b3b0, type: 3}
+    - {fileID: 5319748903683109552, guid: 630c2fcddb7b92e4dbd2e2e17d39b3b0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 630c2fcddb7b92e4dbd2e2e17d39b3b0, type: 3}
@@ -403,17 +406,6 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 900685937358946450, guid: a65cc4d3b59787147b94527f76b25d68, type: 3}
   m_PrefabInstance: {fileID: 959381812059657681}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &681569781 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6509320913704374198, guid: a65cc4d3b59787147b94527f76b25d68, type: 3}
-  m_PrefabInstance: {fileID: 959381812059657681}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a51bd18a8503d194aa053bf8ed4e1671, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &998361826
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +567,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1601063352
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128750464132942957, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359566245895610279, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
+      propertyPath: m_Name
+      value: Grid
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49c5f952329fa8f409fc5b45bf3d71d7, type: 3}
 --- !u!1 &1728236437
 GameObject:
   m_ObjectHideFlags: 3
@@ -1202,7 +1251,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 681569781}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WaveManager, Assembly-CSharp
         m_MethodName: NextWaveButtonClicked
         m_Mode: 1
@@ -2757,6 +2806,7 @@ SceneRoots:
   - {fileID: 959381812059657681}
   - {fileID: 1572137384}
   - {fileID: 319554031}
+  - {fileID: 1601063352}
   - {fileID: 998361827}
   - {fileID: 7092147035156713768}
   - {fileID: 1206624688}

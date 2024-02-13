@@ -32,6 +32,8 @@ public class WaveManager : MonoBehaviour
     public PlayerMovement playerMovement;
     public List<EnemyType> enemyTypes;
 
+    public bool actif;
+
     public int waveNumber;
     public List<WaveData> wavesData;
     public bool isWaveActive;
@@ -48,35 +50,38 @@ public class WaveManager : MonoBehaviour
 
     public void Update()
     {
-        if (isWaveActive && waveNumber < wavesData.Count && wavesData[waveNumber].enemyTypes.Count > 0)
+        if (actif)
         {
-            foreach (EnemyType enemyType in wavesData[waveNumber].enemyTypes)
+            if (isWaveActive && waveNumber < wavesData.Count && wavesData[waveNumber].enemyTypes.Count > 0)
             {
-                if (Time.time > enemyType.timeSinceLastSpawn + enemyType.spawnRate)
+                foreach (EnemyType enemyType in wavesData[waveNumber].enemyTypes)
                 {
-                    SpawnEnemy(enemyType);
-                    enemyType.timeSinceLastSpawn = Time.time;
+                    if (Time.time > enemyType.timeSinceLastSpawn + enemyType.spawnRate)
+                    {
+                        SpawnEnemy(enemyType);
+                        enemyType.timeSinceLastSpawn = Time.time;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.Delete))
+                {
+                    StopWave();
+                    Debug.Log("Wave stopped");
+                }
+                else if (Time.time - waveStartTime > wavesData[waveNumber].waveDuration)
+                {
+                    StopWave();
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.Delete))
+            else
             {
-                StopWave();
-                Debug.Log("Wave stopped");
+                hudManager.menu.SetActive(true);
+                isWaveActive = false;
+                DestroyAllEnemies();
             }
-            else if (Time.time - waveStartTime > wavesData[waveNumber].waveDuration)
-            {
-                StopWave();
-            }
-        }
-        else
-        {
-            hudManager.menu.SetActive(true);
-            isWaveActive = false;
-            DestroyAllEnemies();
-        }
 
-        ChangeWaveWithArrows();
+            ChangeWaveWithArrows();
+        }
     }
 
     public void SpawnEnemy(EnemyType enemyType)
