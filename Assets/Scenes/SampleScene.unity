@@ -9794,6 +9794,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6509320913704374198, guid: a65cc4d3b59787147b94527f76b25d68, type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509320913704374198, guid: a65cc4d3b59787147b94527f76b25d68, type: 3}
       propertyPath: nextWaveBtn
       value: 
       objectReference: {fileID: 1140105171243522561}
