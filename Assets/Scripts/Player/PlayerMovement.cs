@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Keyboard?")]
+    public bool useMouse;
+
     [Header("Speed")]
     public float speed;
     public float minSpeed;
@@ -22,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(!GameManager.instance.isGameMenu)
+        if (!GameManager.instance.isGameMenu)
         {
             if (canControl)
             {
@@ -42,40 +45,76 @@ public class PlayerMovement : MonoBehaviour
 
     private void Rotation()
     {
-        Vector3 _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        spriteRenderer.transform.rotation = Quaternion.Slerp(spriteRenderer.transform.rotation, Quaternion.LookRotation(Vector3.forward, _mousePos - spriteRenderer.transform.position), rotation * Time.deltaTime);
+        if (useMouse)
+        {
+            Vector3 _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            spriteRenderer.transform.rotation = Quaternion.Slerp(spriteRenderer.transform.rotation, Quaternion.LookRotation(Vector3.forward, _mousePos - spriteRenderer.transform.position), rotation * Time.deltaTime);
+        }
+        else
+        {
+            Vector3 _joystickPos = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            if (_joystickPos != Vector3.zero)
+            {
+                spriteRenderer.transform.rotation = Quaternion.Slerp(spriteRenderer.transform.rotation, Quaternion.LookRotation(Vector3.forward, _joystickPos), rotation * Time.deltaTime);
+            }
+        }
     }
 
     private void Acceleration()
     {
-        // Si le joueur maintient la touche espace, augmenter la vitesse progressivement
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (useMouse)
         {
-            speed += acceleration * Time.deltaTime;
-            speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
-        }
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                speed += acceleration * Time.deltaTime;
+                speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+            }
+            else
+            {
+                speed -= deceleration * Time.deltaTime;
+                speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+            }
+
+            if (Input.GetKey(KeyCode.Q))
+            {
+                minSpeed += acceleration * Time.deltaTime;
+                minSpeed = Mathf.Clamp(minSpeed, 1, maxSpeed);
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                minSpeed -= acceleration * Time.deltaTime;
+                minSpeed = Mathf.Clamp(minSpeed, 2, maxSpeed);
+            }
+
+            minSpeed = Mathf.Clamp(minSpeed, 1, maxSpeed);
+        } 
         else
         {
-            // Si la touche espace n'est pas enfoncée, décélérer
-            speed -= deceleration * Time.deltaTime;
-            speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
-        }
+            if (Input.GetKey(KeyCode.Joystick1Button1))
+            {
+                speed += acceleration * Time.deltaTime;
+                speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+            }
+            else
+            {
+                speed -= deceleration * Time.deltaTime;
+                speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+            }
 
-        // Utiliser la touche Q pour augmenter la vitesse minimale progressivement
-        if (Input.GetKey(KeyCode.Q))
-        {
-            minSpeed += acceleration * Time.deltaTime;
+            if (Input.GetKey(KeyCode.Joystick1Button4))
+            {
+                minSpeed += acceleration * Time.deltaTime;
+                minSpeed = Mathf.Clamp(minSpeed, 1, maxSpeed);
+            }
+
+            if (Input.GetKey(KeyCode.Joystick1Button5))
+            {
+                minSpeed -= acceleration * Time.deltaTime;
+                minSpeed = Mathf.Clamp(minSpeed, 2, maxSpeed);
+            }
+
             minSpeed = Mathf.Clamp(minSpeed, 1, maxSpeed);
         }
-
-        // Utiliser la touche E pour diminuer la vitesse minimale progressivement
-        if (Input.GetKey(KeyCode.E))
-        {
-            minSpeed -= acceleration * Time.deltaTime;
-            minSpeed = Mathf.Clamp(minSpeed, 2, maxSpeed);
-        }
-
-        // S'assurer que minSpeed ne soit jamais plus élevé que maxSpeed
-        minSpeed = Mathf.Clamp(minSpeed, 1, maxSpeed);
     }
 }

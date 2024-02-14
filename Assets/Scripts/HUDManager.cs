@@ -6,6 +6,7 @@ public class HUDManager : MonoBehaviour
 {
     [Header("Text")]
     public TMP_Text wave;
+    public TMP_Text timer;
 
     [Header("Bars")]
     public Image globalSpeed;
@@ -48,7 +49,9 @@ public class HUDManager : MonoBehaviour
     public void Text()
     {
         wave.text = "Wave: " + waveManager.waveNumber;
+        timer.text = "Time: " + Mathf.FloorToInt((uint)waveManager.publicTimer);
     }
+
 
     public void UpgradeHealthButtonClicked()
     {

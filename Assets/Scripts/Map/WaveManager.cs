@@ -13,15 +13,15 @@ public class EnemyType
 }
 
 [System.Serializable]
-public struct WaveData
+public class WaveData
 {
     public List<EnemyType> enemyTypes;
     public float waveDuration;
 
-    public WaveData(List<EnemyType> types, float duration)
+    public WaveData()
     {
-        enemyTypes = types;
-        waveDuration = duration;
+        enemyTypes = new List<EnemyType>();
+        waveDuration = 0f;
     }
 }
 
@@ -32,7 +32,7 @@ public class WaveManager : MonoBehaviour
     public PlayerMovement playerMovement;
     public List<EnemyType> enemyTypes;
 
-    public bool actif;
+    public float publicTimer;
 
     public int waveNumber;
     public List<WaveData> wavesData;
@@ -50,38 +50,36 @@ public class WaveManager : MonoBehaviour
 
     public void Update()
     {
-        if (actif)
+        if (isWaveActive && waveNumber < wavesData.Count && wavesData[waveNumber].enemyTypes.Count > 0)
         {
-            if (isWaveActive && waveNumber < wavesData.Count && wavesData[waveNumber].enemyTypes.Count > 0)
+            publicTimer = wavesData[waveNumber].waveDuration - (Time.time - waveStartTime);
+            foreach (EnemyType enemyType in wavesData[waveNumber].enemyTypes)
             {
-                foreach (EnemyType enemyType in wavesData[waveNumber].enemyTypes)
+                if (Time.time > enemyType.timeSinceLastSpawn + enemyType.spawnRate)
                 {
-                    if (Time.time > enemyType.timeSinceLastSpawn + enemyType.spawnRate)
-                    {
-                        SpawnEnemy(enemyType);
-                        enemyType.timeSinceLastSpawn = Time.time;
-                    }
-                }
-
-                if (Input.GetKeyDown(KeyCode.Delete))
-                {
-                    StopWave();
-                    Debug.Log("Wave stopped");
-                }
-                else if (Time.time - waveStartTime > wavesData[waveNumber].waveDuration)
-                {
-                    StopWave();
+                    SpawnEnemy(enemyType);
+                    enemyType.timeSinceLastSpawn = Time.time;
                 }
             }
-            else
-            {
-                hudManager.menu.SetActive(true);
-                isWaveActive = false;
-                DestroyAllEnemies();
-            }
 
-            ChangeWaveWithArrows();
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                StopWave();
+                Debug.Log("Wave stopped");
+            }
+            else if (Time.time - waveStartTime > wavesData[waveNumber].waveDuration)
+            {
+                StopWave();
+            }
         }
+        else
+        {
+            hudManager.menu.SetActive(true);
+            isWaveActive = false;
+            DestroyAllEnemies();
+        }
+
+        ChangeWaveWithArrows();
     }
 
     public void SpawnEnemy(EnemyType enemyType)

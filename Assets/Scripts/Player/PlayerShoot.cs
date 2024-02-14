@@ -32,34 +32,76 @@ public class PlayerShoot : MonoBehaviour
         if (!GameManager.instance.isGameMenu)
         {
 
-            if (Input.GetMouseButton(0) && Time.time > nextFire && playerMovement.canControl)
+            if (playerMovement.useMouse)
             {
-                nextFire = Time.time + fireRate;
-                Shoot();
-                elapsedTimeSinceLastShot = 0f;
-            }
-
-            if (Input.GetMouseButton(1))
-            {
-                playerMovement.canControl = false;
-                TurrelRotation();
-
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0) && Time.time > nextFire && playerMovement.canControl)
                 {
-                    TurrelShoot();
+                    nextFire = Time.time + fireRate;
+                    Shoot();
+                    elapsedTimeSinceLastShot = 0f;
+                }
+            } else
+            {
+                if(Input.GetKey(KeyCode.Joystick1Button0) && Time.time > nextFire && playerMovement.canControl)
+                {
+                    nextFire = Time.time + fireRate;
+                    Shoot();
+                    elapsedTimeSinceLastShot = 0f;
                 }
             }
-            else
+
+            if (playerMovement.useMouse)
             {
-                playerMovement.canControl = true;
+                if (Input.GetMouseButton(1))
+                {
+                    playerMovement.canControl = false;
+                    TurrelRotation();
+
+                    if (Input.GetMouseButton(0))
+                    {
+                        TurrelShoot();
+                    }
+                }
+                else
+                {
+                    playerMovement.canControl = true;
+                }
+
+            } else {
+                
+                if(Input.GetKey(KeyCode.Joystick1Button2))
+                {
+                    playerMovement.canControl = false;
+                    TurrelRotation();
+
+                    if (Input.GetKey(KeyCode.Joystick1Button0))
+                    {
+                        TurrelShoot();
+                    }
+                }
+                else
+                {
+                    playerMovement.canControl = true;
+                }
             }
         }
     }
 
     private void TurrelRotation()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        turrel.transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - turrel.transform.position);
+        if (playerMovement.useMouse)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            turrel.transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - turrel.transform.position);
+        } 
+        else
+        {
+            Vector3 joystickPos = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            if (joystickPos != Vector3.zero)
+            {
+                turrel.transform.rotation = Quaternion.LookRotation(Vector3.forward, joystickPos);
+            }
+        }
     }
 
 
